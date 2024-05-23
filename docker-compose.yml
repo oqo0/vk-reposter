@@ -1,0 +1,6 @@
+﻿services:
+  vktelegramreposter:
+    image: vktelegramreposter
+    build:
+      context: .
+      dockerfile: VkTelegramReposter/Dockerfile

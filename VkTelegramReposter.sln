@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkTelegramReposter", "VkTelegramReposter\VkTelegramReposter.csproj", "{5E79AC0A-D331-4C6F-B278-71F88186E143}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6601A46A-FD16-459B-BD86-A4BC0A9860E5}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E79AC0A-D331-4C6F-B278-71F88186E143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E79AC0A-D331-4C6F-B278-71F88186E143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E79AC0A-D331-4C6F-B278-71F88186E143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E79AC0A-D331-4C6F-B278-71F88186E143}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
