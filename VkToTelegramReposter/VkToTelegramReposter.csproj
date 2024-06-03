@@ -16,7 +16,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Alexinea.Extensions.Configuration.Yaml" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0-preview.4.24266.19" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+      <PackageReference Include="Telegram.Bot" Version="20.0.0-alpha.1" />
       <PackageReference Include="VkNet" Version="1.79.0-alpha-109" />
+      <PackageReference Include="YamlDotNet" Version="15.1.6" />
     </ItemGroup>
 
     <ItemGroup>
