@@ -7,6 +7,9 @@ RepostWith: "telegraph"
 # Can be created using @BotFather
 TelegramBotToken: ""
 
+# Cooldown in seconds before checking for new posts
+CheckCooldown: 3
+
 # Vk to Telegram reposters list
 # Allows unlimited amount of reposters
 # Example:
