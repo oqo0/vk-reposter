@@ -3,6 +3,10 @@
 # "Telegraph" reposts with in a Telegraph article
 RepostWith: "telegraph"
 
+# Telegram bot token
+# Can be created using @BotFather
+TelegramBotToken: ""
+
 # Vk to Telegram reposters list
 # Allows unlimited amount of reposters
 # Example:
@@ -11,11 +15,9 @@ RepostWith: "telegraph"
 #   VkGroupId: "277978367"
 #   VkGroupToken: "groupToken"
 #   TelegramChannelId: "939729831"
-#   TelegramBotToken: "telegramBotToken"
 #
 Reposters:
   -
     VkGroupId: "0"
     VkGroupToken: ""
     TelegramChannelId: "0"
-    TelegramBotToken: ""
