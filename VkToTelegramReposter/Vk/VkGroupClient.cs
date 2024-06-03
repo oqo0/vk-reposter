@@ -11,7 +11,12 @@ public class VkGroupClient
     private readonly LongPollUrl _longPollUrl;
     private readonly TimeSpan _checkCooldownDelay;
 
-    public event Action<string, string[]>? OnNewGroupPost;
+    public ulong GroupId;
+    
+    /// <summary>
+    /// Parameters: group id, post message, images
+    /// </summary>
+    public event Action<ulong, string, string[]>? OnNewGroupPost;
 
     public VkGroupClient(ulong groupId, string groupPrivateToken)
         : this(groupId, groupPrivateToken, TimeSpan.FromSeconds(3)) { }
@@ -27,6 +32,7 @@ public class VkGroupClient
         var response = _vkApi.Groups.GetLongPollServer(groupId);
         _longPollUrl = new LongPollUrl(response.Server, response.Key, response.Ts);
 
+        GroupId = groupId;
         _checkCooldownDelay = checkCooldownDelay;
     }
 
@@ -82,6 +88,6 @@ public class VkGroupClient
             }
         }
 
-        OnNewGroupPost?.Invoke(post.Text, attachmentUrlList.ToArray());
+        OnNewGroupPost?.Invoke(GroupId, post.Text, attachmentUrlList.ToArray());
     }
 }
