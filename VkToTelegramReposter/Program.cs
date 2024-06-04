@@ -1,17 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using VkTelegramReposter.Extensions;
 
-var builder = Host.CreateDefaultBuilder();
+var builder = Host.CreateApplicationBuilder();
 
-builder.ConfigureAppConfiguration(options =>
-{
-    options.AddYamlFile("config.yml", false);
-});
+builder.Configuration.Sources.AddYaml("config.yml");
 
-builder.ConfigureServices((context, services) =>
-{
-    services.AddVkToTelegramReposter(context.Configuration);
-});
+builder.Services.AddVkToTelegramReposter(builder.Configuration);
 
-await builder.Build().StartAsync();
+await builder.Build().RunAsync();
