@@ -10,6 +10,14 @@ TelegramBotToken: ""
 # Cooldown in seconds before checking for new posts
 CheckCooldown: 3
 
+# Telegraph article settings
+# Matters if you use "Telegraph" in RepostWith option
+Telegraph:
+  AuthorShortName: "Reposter"
+  AuthorName: "Vk to Telegram reposter"
+  AuthorUrl: "https://github.com/oqo0"
+  PageName: "NewPage"
+
 # Vk to Telegram reposters list
 # Allows unlimited amount of reposters
 # Example:
