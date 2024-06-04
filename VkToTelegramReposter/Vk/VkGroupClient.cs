@@ -16,7 +16,7 @@ public class VkGroupClient
     /// <summary>
     /// Parameters: group id, post message, images
     /// </summary>
-    public event Action<ulong, string, string[]>? OnNewGroupPost;
+    public event Func<ulong, string, string[], Task>? OnNewGroupPost;
 
     public VkGroupClient(ulong groupId, string groupPrivateToken)
         : this(groupId, groupPrivateToken, TimeSpan.FromSeconds(3)) { }
@@ -36,7 +36,7 @@ public class VkGroupClient
         _checkCooldownDelay = checkCooldownDelay;
     }
 
-    public async Task StartListening(CancellationToken cancellationToken)
+    public async Task StartListeningAsync(CancellationToken cancellationToken)
     {
         using var httpClient = new HttpClient();
 
