@@ -1,13 +1,15 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Telegram.Bot;
 using VkTelegramReposter.Configuration;
+using VkTelegramReposter.Core.MessageFormatters;
 using VkTelegramReposter.Vk;
 
-namespace VkTelegramReposter.Services;
+namespace VkTelegramReposter.Core.Services;
 
 public class VkToTelegramReposterService(
     TelegramBotClient telegramBotClient,
-    Config config) : IHostedService
+    Config config,
+    IMessageFormatter messageFormatter) : IHostedService
 {
     public Task StartAsync(CancellationToken cancellationToken)
     {
@@ -19,9 +21,9 @@ public class VkToTelegramReposterService(
                 TimeSpan.FromSeconds(config.CheckCooldown));
             
             vkGroupClient.OnNewGroupPost += HandleNewPost;
-            vkGroupClient.StartListening(cancellationToken);
+            _ = vkGroupClient.StartListeningAsync(cancellationToken);
         }
-        
+
         return Task.CompletedTask;
     }
 
@@ -30,13 +32,13 @@ public class VkToTelegramReposterService(
         return Task.CompletedTask;
     }
 
-    private void HandleNewPost(ulong groupId, string newPostText, string[] images)
+    private async Task HandleNewPost(ulong groupId, string newPostText, string[] images)
     {
-        string telegramMessageText = newPostText + "\n" + string.Join("\n", images);;
+        string messageText = await messageFormatter.FormatAsync(newPostText, images);
         
-        telegramBotClient.SendTextMessageAsync(
+        await telegramBotClient.SendTextMessageAsync(
             chatId: config.Reposters.First(r => r.VkGroupId == groupId).TelegramChannelId,
-            text: telegramMessageText
+            text: messageText
         );
     }
 }
