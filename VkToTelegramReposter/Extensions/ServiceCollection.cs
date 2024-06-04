@@ -53,8 +53,12 @@ public static class ServiceCollection
             config.Telegraph.AuthorShortName, config.Telegraph.AuthorName, config.Telegraph.AuthorUrl);
 
         var account = accountTask.GetAwaiter().GetResult();
+
+        var telegraphToken = account.AccessToken;
+        if (telegraphToken is null)
+            throw new InvalidDataException("Telegraph token configuration option is invalid");
         
-        var telegraphClient = new TelegraphClient(account.AccessToken!);
+        var telegraphClient = new TelegraphClient(telegraphToken);
         services.AddSingleton(telegraphClient);
     }
     
