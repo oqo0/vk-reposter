@@ -3,4 +3,6 @@
     image: vktelegramreposter
     build:
       context: .
-      dockerfile: VkTelegramReposter/Dockerfile
+      dockerfile: ./VkToTelegramReposter/Dockerfile
+    volumes:
+      - ./config.yml:/app/config.yml:ro
