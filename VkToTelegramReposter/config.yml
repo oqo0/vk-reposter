@@ -1,5 +1,5 @@
 ﻿# Way to send Telegram message with:
-# "Message" reposts with a normal message
+# "Normal" reposts with a normal message
 # "Telegraph" reposts with in a Telegraph article
 RepostWith: "telegraph"
 
