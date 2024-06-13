@@ -32,7 +32,7 @@ public class TelegraphMessageFormatter(
         
         pageContent.Add(Node.A(vkPostLink, "Vk"));
         
-        var page = await telegraphClient.CreatePageAsync(config.Telegraph.PageName, pageContent);
+        var page = await telegraphClient.CreatePageAsync(config.Telegraph.PageName + " #" + postId, pageContent);
 
         return outerTags + "\n \n" + page.Url;
     }
