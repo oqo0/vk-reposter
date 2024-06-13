@@ -32,9 +32,9 @@ public class VkToTelegramReposterService(
         return Task.CompletedTask;
     }
 
-    private async Task HandleNewPost(ulong groupId, string newPostText, string[] images)
+    private async Task HandleNewPost(ulong groupId, ulong postId, string newPostText, string[] images)
     {
-        string messageText = await messageFormatter.FormatAsync(newPostText, images);
+        string messageText = await messageFormatter.FormatAsync(groupId, postId, newPostText, images);
         
         await telegramBotClient.SendTextMessageAsync(
             chatId: config.Reposters.First(r => r.VkGroupId == groupId).TelegramChannelId,
