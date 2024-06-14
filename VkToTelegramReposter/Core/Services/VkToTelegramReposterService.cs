@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using VkTelegramReposter.Configuration;
 using VkTelegramReposter.Core.MessageFormatters;
@@ -9,7 +10,8 @@ namespace VkTelegramReposter.Core.Services;
 public class VkToTelegramReposterService(
     TelegramBotClient telegramBotClient,
     Config config,
-    IMessageFormatter messageFormatter) : IHostedService
+    IMessageFormatter messageFormatter,
+    ILogger<VkToTelegramReposterService> logger) : IHostedService
 {
     public Task StartAsync(CancellationToken cancellationToken)
     {
@@ -34,6 +36,12 @@ public class VkToTelegramReposterService(
 
     private async Task HandleNewPost(ulong groupId, ulong postId, string newPostText, string[] images)
     {
+        logger.Log(
+            LogLevel.Information, 
+            $"New Vk post received: \n" +
+            $"group id: {groupId}" +
+            $"post id: {postId}");
+        
         string messageText = await messageFormatter.FormatAsync(groupId, postId, newPostText, images);
         
         await telegramBotClient.SendTextMessageAsync(
