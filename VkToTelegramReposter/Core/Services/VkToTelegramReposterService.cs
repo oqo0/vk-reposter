@@ -39,7 +39,7 @@ public class VkToTelegramReposterService(
         logger.Log(
             LogLevel.Information, 
             $"New Vk post received: \n" +
-            $"group id: {groupId}" +
+            $"group id: {groupId}, " +
             $"post id: {postId}");
         
         string messageText = await messageFormatter.FormatAsync(groupId, postId, newPostText, images);
