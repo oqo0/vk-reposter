@@ -23,7 +23,10 @@ public class VkToTelegramReposterService(
                 TimeSpan.FromSeconds(config.CheckCooldown));
             
             vkGroupClient.OnNewGroupPost += HandleNewPost;
-            _ = vkGroupClient.StartListeningAsync(cancellationToken);
+
+            Task.Run(
+                () => vkGroupClient.StartListeningAsync(cancellationToken),
+                cancellationToken);
         }
 
         return Task.CompletedTask;

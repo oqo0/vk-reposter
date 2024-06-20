@@ -5,32 +5,17 @@ services:
       context: "C:\\Users\\oqo0\\RiderProjects\\VkTelegramReposter"
       dockerfile: "./VkToTelegramReposter/Dockerfile"
       target: "base"
-      args:
-        BUILD_CONFIGURATION: "Debug"
     command: []
     entrypoint:
-    - "/opt/rider-debugger/linux-x64/JetBrains.Debugger.Worker"
-    - "--runtimeconfig"
-    - "/opt/rider-debugger/JetBrains.Debugger.Worker.runtimeconfig.json"
-    - "--mode=server"
-    - "--frontend-port=57100"
-    - "--backend-port=57300"
-    - "--timeout=60"
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/VkToTelegramReposter.dll"
     environment:
       DOTNET_ENVIRONMENT: "Development"
       DOTNET_USE_POLLING_FILE_WATCHER: "true"
-      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
-      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
     image: "vktelegramreposter:dev"
-    ports:
-    - "127.0.0.1:57002:57100"
-    - "127.0.0.1:57202:57300"
+    ports: []
     volumes:
     - "C:\\Users\\oqo0\\.nuget\\packages:/home/app/.nuget/packages"
     - "C:\\Users\\oqo0\\RiderProjects\\VkTelegramReposter\\VkToTelegramReposter:/app:rw"
     - "C:\\Users\\oqo0\\RiderProjects\\VkTelegramReposter:/src:rw"
-    - "C:\\Users\\oqo0\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2024.1\\Linux64:/opt/rider-debugger"
-    - "C:\\Users\\oqo0\\AppData\\Local\\Programs\\Rider\\bin:/etc/opt/rider-debugger/backend-log.xml"
-    - "C:\\Users\\oqo0\\AppData\\Local\\JetBrains\\Rider2024.1\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2024_6_17_20_40_31:/var/opt/rider-debugger:rw"
     working_dir: "/app"
