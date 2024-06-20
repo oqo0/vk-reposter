@@ -11,7 +11,7 @@ public class VkGroupClient
     private readonly LongPollUrl _longPollUrl;
     private readonly TimeSpan _checkCooldownDelay;
 
-    public ulong GroupId;
+    public readonly ulong GroupId;
     
     /// <summary>
     /// Parameters: group id, post message, images
@@ -39,32 +39,46 @@ public class VkGroupClient
     public async Task StartListeningAsync(CancellationToken cancellationToken)
     {
         using var httpClient = new HttpClient();
-
         while (!cancellationToken.IsCancellationRequested)
         {
-            await Task.Delay(_checkCooldownDelay, cancellationToken);
+            try
+            {
+                // await Task.Delay(_checkCooldownDelay, cancellationToken);
 
-            var updatesCheckResult = await CheckForUpdates(httpClient);
-            if (!updatesCheckResult)
-                return;
+                var updatesCheckResult = await CheckForUpdates(httpClient);
+                if (!updatesCheckResult)
+                    return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in StartListeningAsync for group {GroupId}: {ex.Message}");
+            }
         }
     }
 
     private async Task<bool> CheckForUpdates(HttpClient httpClient)
     {
-        var response = await httpClient.GetStringAsync(_longPollUrl.Form());
-        var vkResponse = JsonSerializer.Deserialize<LongPollResponse>(response);
-
-        if (vkResponse == null)
-            return false;
-
-        foreach (var update in vkResponse.Updates)
+        try
         {
-            ProcessUpdate(update);
-        }
+            var response = await httpClient.GetStringAsync(_longPollUrl.Form());
+            var vkResponse = JsonSerializer.Deserialize<LongPollResponse>(response);
 
-        _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
-        return true;
+            if (vkResponse == null)
+                return false;
+
+            foreach (var update in vkResponse.Updates)
+            {
+                ProcessUpdate(update);
+            }
+
+            _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception in CheckForUpdates for group {GroupId}: {ex.Message}");
+            return false;
+        }
     }
 
     private void ProcessUpdate(Update update)
@@ -73,7 +87,6 @@ public class VkGroupClient
             return;
 
         var post = update.Object;
-
         var attachmentUrlList = new List<string>();
 
         foreach (var attachment in post.Attachments)

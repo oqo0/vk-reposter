@@ -23,8 +23,8 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
     image: "vktelegramreposter:dev"
     ports:
-    - "127.0.0.1:57001:57100"
-    - "127.0.0.1:57201:57300"
+    - "127.0.0.1:57002:57100"
+    - "127.0.0.1:57202:57300"
     volumes:
     - "C:\\Users\\oqo0\\.nuget\\packages:/home/app/.nuget/packages"
     - "C:\\Users\\oqo0\\RiderProjects\\VkTelegramReposter\\VkToTelegramReposter:/app:rw"
@@ -32,5 +32,5 @@ services:
     - "C:\\Users\\oqo0\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2024.1\\Linux64:/opt/rider-debugger"
     - "C:\\Users\\oqo0\\AppData\\Local\\Programs\\Rider\\bin:/etc/opt/rider-debugger/backend-log.xml"
     - "C:\\Users\\oqo0\\AppData\\Local\\JetBrains\\Rider2024.1\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2024_6_13_10_29_47:/var/opt/rider-debugger:rw"
+      JetBrains.Debugger.Worker.2024_6_17_20_40_31:/var/opt/rider-debugger:rw"
     working_dir: "/app"
