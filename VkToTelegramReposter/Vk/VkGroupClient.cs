@@ -43,7 +43,7 @@ public class VkGroupClient
         {
             try
             {
-                // await Task.Delay(_checkCooldownDelay, cancellationToken);
+                await Task.Delay(_checkCooldownDelay, cancellationToken);
 
                 var updatesCheckResult = await CheckForUpdates(httpClient);
                 if (!updatesCheckResult)
