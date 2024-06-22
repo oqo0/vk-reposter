@@ -41,26 +41,20 @@ public class VkGroupClient
         using var httpClient = new HttpClient();
         while (!cancellationToken.IsCancellationRequested)
         {
-            try
-            {
-                await Task.Delay(_checkCooldownDelay, cancellationToken);
+            await Task.Delay(_checkCooldownDelay, cancellationToken);
 
-                var updatesCheckResult = await CheckForUpdates(httpClient);
-                if (!updatesCheckResult)
-                    return;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception in StartListeningAsync for group {GroupId}: {ex.Message}");
-            }
+            var updatesCheckResult = await CheckForUpdates(httpClient);
+            if (!updatesCheckResult)
+                return;
         }
     }
 
     private async Task<bool> CheckForUpdates(HttpClient httpClient)
     {
+        var response = await httpClient.GetStringAsync(_longPollUrl.Form());
+        
         try
         {
-            var response = await httpClient.GetStringAsync(_longPollUrl.Form());
             var vkResponse = JsonSerializer.Deserialize<LongPollResponse>(response);
 
             if (vkResponse == null)
@@ -76,7 +70,8 @@ public class VkGroupClient
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Exception in CheckForUpdates for group {GroupId}: {ex.Message}");
+            Console.WriteLine($"Exception in CheckForUpdates for group {GroupId}: {ex.Message} \n" +
+                              $"Response: {response}");
             return false;
         }
     }
