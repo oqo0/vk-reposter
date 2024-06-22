@@ -103,8 +103,12 @@ public class VkGroupClient
             return;
 
         var post = update.Object;
+        
+        if (post.PostType != "post")
+            return;
+        
         var attachmentUrlList = new List<string>();
-
+        
         foreach (var attachment in post.Attachments)
         {
             if (attachment.Photo == null)
