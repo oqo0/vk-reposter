@@ -60,34 +60,7 @@ public class VkGroupClient
         
         try
         {
-            var vkResponse = JsonSerializer.Deserialize<LongPollResponse>(response);
-
-            if (vkResponse == null)
-                return false;
-
-            if (vkResponse.Failed != null)
-            {
-                switch (vkResponse.Failed)
-                {
-                    case 1:
-                        _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
-                        break;
-                    case 2:
-                    case 3:
-                        UpdateLongPollServer();
-                        break;
-                }
-
-                return true;
-            }
-            
-            foreach (var update in vkResponse.Updates)
-            {
-                ProcessUpdate(update);
-            }
-
-            _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
-            return true;
+            return CheckResponseForUpdates(response);
         }
         catch (Exception ex)
         {
@@ -95,6 +68,32 @@ public class VkGroupClient
                               $"Response: {response}");
             return false;
         }
+    }
+
+    private bool CheckResponseForUpdates(string response)
+    {
+        var vkResponse = JsonSerializer.Deserialize<LongPollResponse>(response);
+
+        if (vkResponse == null)
+            return false;
+
+        if (vkResponse.Failed != null)
+        {
+            if (vkResponse.Failed == 1)
+                _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
+            else if (vkResponse.Failed is 2 or 3)
+                UpdateLongPollServer();
+
+            return true;
+        }
+            
+        foreach (var update in vkResponse.Updates)
+        {
+            ProcessUpdate(update);
+        }
+
+        _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
+        return true;
     }
 
     private void ProcessUpdate(Update update)
