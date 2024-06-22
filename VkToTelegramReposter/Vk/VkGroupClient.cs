@@ -7,11 +7,10 @@ namespace VkTelegramReposter.Vk;
 
 public class VkGroupClient
 {
-    private readonly VkApi _vkApi = new();
-    private readonly LongPollUrl _longPollUrl;
-    private readonly TimeSpan _checkCooldownDelay;
-
     public readonly ulong GroupId;
+    private readonly VkApi _vkApi = new();
+    private readonly TimeSpan _checkCooldownDelay;
+    private LongPollUrl _longPollUrl;
     
     /// <summary>
     /// Parameters: group id, post message, images
@@ -49,6 +48,12 @@ public class VkGroupClient
         }
     }
 
+    private void UpdateLongPollServer()
+    {
+        var response = _vkApi.Groups.GetLongPollServer(GroupId);
+        _longPollUrl = new LongPollUrl(response.Server, response.Key, response.Ts);
+    }
+    
     private async Task<bool> CheckForUpdates(HttpClient httpClient)
     {
         var response = await httpClient.GetStringAsync(_longPollUrl.Form());
@@ -60,6 +65,22 @@ public class VkGroupClient
             if (vkResponse == null)
                 return false;
 
+            if (vkResponse.Failed != null)
+            {
+                switch (vkResponse.Failed)
+                {
+                    case 1:
+                        _longPollUrl.TimeStamp = Convert.ToUInt32(vkResponse.Ts);
+                        break;
+                    case 2:
+                    case 3:
+                        UpdateLongPollServer();
+                        break;
+                }
+
+                return true;
+            }
+            
             foreach (var update in vkResponse.Updates)
             {
                 ProcessUpdate(update);
