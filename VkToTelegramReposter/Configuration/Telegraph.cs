@@ -15,4 +15,7 @@ public class Telegraph
     
     [YamlMember(typeof(ulong), Alias = "PageName")]
     public string PageName { get; set; } = string.Empty;
+
+    [YamlMember(typeof(string), Alias = "VkPostLinkMessage")]
+    public string VkPostLinkMessage { get; set; } = string.Empty;
 }

@@ -17,6 +17,7 @@ Telegraph:
   AuthorName: "Vk to Telegram reposter"
   AuthorUrl: "https://github.com/oqo0"
   PageName: "NewPage"
+  VkPostLinkMessage: "Original Vk post"
 
 # Vk to Telegram reposters list
 # Allows unlimited amount of reposters
