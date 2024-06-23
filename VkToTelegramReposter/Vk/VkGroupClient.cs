@@ -56,10 +56,11 @@ public class VkGroupClient
     
     private async Task<bool> CheckForUpdates(HttpClient httpClient)
     {
-        var response = await httpClient.GetStringAsync(_longPollUrl.Form());
+        var response = "None";
         
         try
         {
+            response = await httpClient.GetStringAsync(_longPollUrl.Form());
             return CheckResponseForUpdates(response);
         }
         catch (Exception ex)
