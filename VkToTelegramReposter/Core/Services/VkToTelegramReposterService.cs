@@ -37,7 +37,7 @@ public class VkToTelegramReposterService(
         return Task.CompletedTask;
     }
 
-    private async Task HandleNewPost(ulong groupId, ulong postId, string newPostText, string[] images)
+    private async Task HandleNewPost(ulong groupId, ulong postId, string newPostText, long ownerId, string[] images)
     {
         logger.Log(
             LogLevel.Information, 
@@ -45,7 +45,7 @@ public class VkToTelegramReposterService(
             $"group id: {groupId}, " +
             $"post id: {postId}");
         
-        string messageText = await messageFormatter.FormatAsync(groupId, postId, newPostText, images);
+        string messageText = await messageFormatter.FormatAsync(groupId, postId, newPostText, ownerId, images);
         
         await telegramBotClient.SendTextMessageAsync(
             chatId: config.Reposters.First(r => r.VkGroupId == groupId).TelegramChannelId,

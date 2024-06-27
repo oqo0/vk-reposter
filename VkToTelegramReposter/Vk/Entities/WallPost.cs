@@ -13,6 +13,9 @@ public class WallPost
     [JsonPropertyName("post_type")]
     public string PostType { get; set; } = string.Empty;
 
+    [JsonPropertyName("owner_id")]
+    public long OwnerId { get; set; }
+    
     [JsonPropertyName("attachments")]
     public List<Attachment> Attachments { get; set; } = [];
 }

@@ -15,7 +15,7 @@ public class VkGroupClient
     /// <summary>
     /// Parameters: group id, post message, images
     /// </summary>
-    public event Func<ulong, ulong, string, string[], Task>? OnNewGroupPost;
+    public event Func<ulong, ulong, string, long, string[], Task>? OnNewGroupPost;
 
     public VkGroupClient(ulong groupId, string groupPrivateToken)
         : this(groupId, groupPrivateToken, TimeSpan.FromSeconds(3)) { }
@@ -121,6 +121,6 @@ public class VkGroupClient
             }
         }
 
-        OnNewGroupPost?.Invoke(GroupId, post.Id, post.Text, attachmentUrlList.ToArray());
+        OnNewGroupPost?.Invoke(GroupId, post.Id, post.Text, post.OwnerId, attachmentUrlList.ToArray());
     }
 }

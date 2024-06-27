@@ -10,7 +10,7 @@ public class TelegraphMessageFormatter(
     TelegraphClient telegraphClient,
     Config config) : IMessageFormatter
 {
-    public async Task<string> FormatAsync(ulong groupId, ulong postId, string newPostText, string[] images)
+    public async Task<string> FormatAsync(ulong groupId, ulong postId, string newPostText, long ownerId, string[] images)
     {
         var pageContent = new List<Node>();
         var textLines = newPostText.Split('\n');
@@ -26,7 +26,9 @@ public class TelegraphMessageFormatter(
 
         pageContent.AddRange(images.Select(Node.Img));
 
-        string vkPostLink = new VkLinkBuilder().WithGroupId(groupId)
+        string vkPostLink = new VkLinkBuilder()
+            .WithGroupType(ownerId > 0 ? "club" : "public")
+            .WithGroupId(groupId)
             .WithPostId(postId)
             .Build();
         
