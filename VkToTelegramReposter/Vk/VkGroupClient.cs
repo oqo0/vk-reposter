@@ -10,7 +10,7 @@ public class VkGroupClient
     public readonly ulong GroupId;
     private readonly VkApi _vkApi = new();
     private readonly TimeSpan _checkCooldownDelay;
-    private LongPollUrl _longPollUrl;
+    private LongPollUrl _longPollUrl = null!;
     
     /// <summary>
     /// Parameters: group id, post message, images
@@ -28,9 +28,8 @@ public class VkGroupClient
         };
         _vkApi.Authorize(authParams);
 
-        var response = _vkApi.Groups.GetLongPollServer(groupId);
-        _longPollUrl = new LongPollUrl(response.Server, response.Key, response.Ts);
-
+        UpdateLongPollServer();
+        
         GroupId = groupId;
         _checkCooldownDelay = checkCooldownDelay;
     }
