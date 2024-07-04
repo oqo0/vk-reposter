@@ -28,9 +28,9 @@ namespace VkTelegramReposter.Vk
             };
             _vkApi.Authorize(authParams);
 
-            UpdateLongPollServer();
-
             GroupId = groupId;
+            UpdateLongPollServer();
+            
             _checkCooldownDelay = checkCooldownDelay;
         }
 
