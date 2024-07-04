@@ -37,6 +37,8 @@ public class VkGroupClient
     public async Task StartListeningAsync(CancellationToken cancellationToken)
     {
         using var httpClient = new HttpClient();
+        httpClient.Timeout = TimeSpan.FromMinutes(2);
+
         while (!cancellationToken.IsCancellationRequested)
         {
             await Task.Delay(_checkCooldownDelay, cancellationToken);
