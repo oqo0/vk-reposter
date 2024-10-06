@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
-using VkTelegramReposter.Configuration;
+using VkReposter.Configuration;
+using VkReposter.Vk;
 using VkTelegramReposter.Core.MessageFormatters;
-using VkTelegramReposter.Vk;
 
-namespace VkTelegramReposter.Core.Services;
+namespace VkReposter.Core.Services;
 
 public class VkToTelegramReposterService(
     TelegramBotClient telegramBotClient,

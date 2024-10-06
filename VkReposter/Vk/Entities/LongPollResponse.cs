@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace VkTelegramReposter.Vk.Entities;
+namespace VkReposter.Vk.Entities;
 
 public class LongPollResponse
 {

@@ -2,11 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegraph.Sharp;
-using VkTelegramReposter.Configuration;
+using VkReposter.Configuration;
+using VkReposter.Core.MessageFormatters;
+using VkReposter.Core.Services;
 using VkTelegramReposter.Core.MessageFormatters;
-using VkTelegramReposter.Core.Services;
 
-namespace VkTelegramReposter.Extensions;
+namespace VkReposter.Extensions;
 
 public static class ServiceCollection
 {

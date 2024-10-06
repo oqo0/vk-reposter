@@ -1,6 +1,6 @@
 ﻿using YamlDotNet.Serialization;
 
-namespace VkTelegramReposter.Configuration;
+namespace VkReposter.Configuration;
 
 public class Reposter
 {

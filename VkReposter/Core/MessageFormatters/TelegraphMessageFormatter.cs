@@ -1,10 +1,11 @@
 ﻿using System.Text;
 using Telegraph.Sharp;
 using Telegraph.Sharp.Types;
-using VkTelegramReposter.Configuration;
+using VkReposter.Configuration;
+using VkTelegramReposter.Core.MessageFormatters;
 using VkTelegramReposter.Utils;
 
-namespace VkTelegramReposter.Core.MessageFormatters;
+namespace VkReposter.Core.MessageFormatters;
 
 public class TelegraphMessageFormatter(
     TelegraphClient telegraphClient,

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using VkNet;
 using VkNet.Model;
-using VkTelegramReposter.Vk.Entities;
+using VkReposter.Vk.Entities;
 
-namespace VkTelegramReposter.Vk
+namespace VkReposter.Vk
 {
     public class VkGroupClient
     {

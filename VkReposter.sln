@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToTelegramReposter", "VkToTelegramReposter\VkToTelegramReposter.csproj", "{5E79AC0A-D331-4C6F-B278-71F88186E143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkReposter", "VkReposter\VkReposter.csproj", "{5E79AC0A-D331-4C6F-B278-71F88186E143}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6601A46A-FD16-459B-BD86-A4BC0A9860E5}"
 	ProjectSection(SolutionItems) = preProject

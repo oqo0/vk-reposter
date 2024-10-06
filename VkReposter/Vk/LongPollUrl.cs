@@ -1,4 +1,4 @@
-﻿namespace VkTelegramReposter.Vk;
+﻿namespace VkReposter.Vk;
 
 public class LongPollUrl(string serverUrl, string key, ulong timeStamp)
 {
