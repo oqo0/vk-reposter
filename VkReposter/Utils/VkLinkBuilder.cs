@@ -1,4 +1,4 @@
-﻿namespace VkTelegramReposter.Utils;
+﻿namespace VkReposter.Utils;
 
 public class VkLinkBuilder
 {

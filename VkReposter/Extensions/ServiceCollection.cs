@@ -5,7 +5,6 @@ using Telegraph.Sharp;
 using VkReposter.Configuration;
 using VkReposter.Core.MessageFormatters;
 using VkReposter.Core.Services;
-using VkTelegramReposter.Core.MessageFormatters;
 
 namespace VkReposter.Extensions;
 

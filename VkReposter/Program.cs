@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
 using VkReposter.Extensions;
-using VkTelegramReposter.Extensions;
 
 var builder = Host.CreateApplicationBuilder();
 

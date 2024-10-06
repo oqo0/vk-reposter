@@ -1,7 +1,7 @@
 ﻿using Alexinea.Extensions.Configuration.Yaml;
 using Microsoft.Extensions.Configuration;
 
-namespace VkTelegramReposter.Extensions;
+namespace VkReposter.Extensions;
 
 public static class ConfigurationSources
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using VkTelegramReposter.Utils;
+using VkReposter.Utils;
 
-namespace VkTelegramReposter.Core.MessageFormatters;
+namespace VkReposter.Core.MessageFormatters;
 
 public class NormalMessageFormatter : IMessageFormatter
 {

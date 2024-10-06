@@ -1,4 +1,4 @@
-﻿namespace VkTelegramReposter.Core.MessageFormatters;
+﻿namespace VkReposter.Core.MessageFormatters;
 
 public interface IMessageFormatter
 {

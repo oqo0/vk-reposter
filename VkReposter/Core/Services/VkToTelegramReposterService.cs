@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using VkReposter.Configuration;
+using VkReposter.Core.MessageFormatters;
 using VkReposter.Vk;
-using VkTelegramReposter.Core.MessageFormatters;
 
 namespace VkReposter.Core.Services;
 

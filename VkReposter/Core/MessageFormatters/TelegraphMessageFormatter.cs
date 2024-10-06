@@ -2,8 +2,7 @@
 using Telegraph.Sharp;
 using Telegraph.Sharp.Types;
 using VkReposter.Configuration;
-using VkTelegramReposter.Core.MessageFormatters;
-using VkTelegramReposter.Utils;
+using VkReposter.Utils;
 
 namespace VkReposter.Core.MessageFormatters;
 
